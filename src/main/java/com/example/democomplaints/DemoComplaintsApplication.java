@@ -62,7 +62,7 @@ public class DemoComplaintsApplication {
 
             @CommandHandler
             public Complaint(FileComplaintCommand cmd) {
-                Assert.hasLength(cmd.getCompany());
+                Assert.hasLength(cmd.getCompany(), "The company information cannot be empty");
 
                 apply(new ComplaintFiledEvent(cmd.getId(), cmd.getCompany(), cmd.getDescription()));
             }
