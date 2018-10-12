@@ -52,7 +52,7 @@ public class DemoComplaintsApplication {
 
         @GetMapping("/{id}")
         public ComplaintQueryObject find(@PathVariable String id) {
-            return repository.getOne(id);
+            return repository.findById(id).get();
         }
 
         @Aggregate
@@ -87,7 +87,7 @@ public class DemoComplaintsApplication {
 
             @EventHandler
             public void on(ComplaintFiledEvent event) {
-                //repository.save(new ComplaintQueryObject(event.getId(), event.getCompany(), event.getDescription()));
+                repository.save(new ComplaintQueryObject(event.getId(), event.getCompany(), event.getDescription()));
             }
         }
 
